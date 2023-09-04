@@ -3,6 +3,7 @@ import "./file.css";
 import Products from "sections/Products";
 import Info from "sections/Info";
 import Testimonials from "sections/Testimonials";
+import Populars from "sections/Populars";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Products />
       <Info />
       <Testimonials />
+      <Populars />
     </div>
   );
 }

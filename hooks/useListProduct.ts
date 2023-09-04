@@ -8,12 +8,12 @@ const useListProduct = () => {
 
   const pb = new PocketBase(process.env.NEXT_PUBLIC_API);
 
-  const list = async () => {
+  const list = async (max: number) => {
     setIsLoading(true);
-    const records = await pb.collection("products").getFullList({
+    const response = await pb.collection("products").getList(1, max, {
       sort: "-created",
     });
-    setData(records);
+    setData(response.items);
     setIsLoading(false);
   };
 

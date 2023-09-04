@@ -8,7 +8,7 @@ const Products = () => {
   const { list, isLoading, data } = useListProduct();
 
   useEffect(() => {
-    list();
+    list(8);
   }, []);
   return (
     <div className="w-full bg-white min-h-[500px] text-black py-20">
@@ -21,8 +21,8 @@ const Products = () => {
         </p>
       </div>
       <div className="grid grid-cols-4 px-28 gap-5 mt-10">
-        {data?.map((product) => (
-          <ProductCard product={product} />
+        {data?.map((product, i) => (
+          <ProductCard product={product} key={i} />
         ))}
       </div>
     </div>
