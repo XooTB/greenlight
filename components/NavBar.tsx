@@ -8,8 +8,10 @@ const NavBar = () => {
   return (
     <div className="container mx-auto flex justify-between items-center bg-white h-20">
       <div className="flex items-center justify-center w-1/3">
-        <Image src={logo} height={40} width={40} alt="logo" />
-        <p className="text-2xl pl-1 font-semibold text-green">Greenlight</p>
+        <Link href="/" className="flex items-center">
+          <Image src={logo} height={40} width={40} alt="logo" />
+          <p className="text-2xl pl-1 font-semibold text-green">Greenlight</p>
+        </Link>
       </div>
       <div className="flex font-roboto text-base w-1/3 justify-between items-center font-medium text-black px-5">
         <Link href="/discover">

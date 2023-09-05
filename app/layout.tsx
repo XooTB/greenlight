@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./file.css";
 import { Inter } from "next/font/google";
 import NavBar from "components/NavBar";
 import Footer from "components/Footer";

@@ -15,8 +15,8 @@ const Populars = () => {
         <p className="text-grey">Our top selling product that you may like</p>
       </div>
       <div className="my-10 grid grid-cols-4 px-20 gap-5">
-        {data?.map((item) => (
-          <ProductCard product={item} />
+        {data?.map((item, i) => (
+          <ProductCard product={item} key={i} />
         ))}
       </div>
     </div>
