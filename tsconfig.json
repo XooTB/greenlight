@@ -26,7 +26,8 @@
       "@/contexts/*": ["contexts/"],
       "@/hooks/*": ["hooks/"],
       "@/atoms/*": ["atoms/"],
-      "@/assets/*": ["assets/"]
+      "@/assets/*": ["assets/"],
+      "@store/*": ["store/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

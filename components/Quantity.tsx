@@ -1,13 +1,19 @@
 import React, { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
-const Quantity = () => {
+interface quantityProps {
+  quantity: number;
+  setQuantity: Dispatch<SetStateAction<number>>;
+}
+
+const Quantity = ({ quantity, setQuantity }: quantityProps) => {
   const [count, setCount] = useState(1);
   const handleIncrement = () => {
-    setCount(count + 1);
+    setQuantity(quantity + 1);
   };
   const handleDecrement = () => {
     if (count > 0) {
-      setCount(count - 1);
+      setQuantity(quantity - 1);
     }
   };
 
@@ -21,7 +27,7 @@ const Quantity = () => {
         >
           -
         </button>
-        <p className="w-2/4 text-center text-black">{count}</p>
+        <p className="w-2/4 text-center text-black">{quantity}</p>
         <button
           onClick={handleIncrement}
           className="hover:bg-gray-200 w-1/4 py-2 px-2"

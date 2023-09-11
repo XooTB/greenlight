@@ -1,10 +1,12 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ShoppingCartOutlined, Add } from "@mui/icons-material";
 import useGetProductDetails from "hooks/useGetProductDetails";
 import useFile from "hooks/useFile";
 import Quantity from "components/Quantity";
 import OrderTypeForm from "components/OrderTypeForm";
+import { useCart } from "@store/store";
+import { cartItem } from "@/interfaces/product";
 
 interface productPageProps {
   params: { productID: string };
@@ -14,10 +16,23 @@ const page = ({ params }: productPageProps) => {
   const ID = params.productID;
   const { isLoading, data, getDetails } = useGetProductDetails();
   const imageUrl = useFile(data, data?.image);
+  const [quantity, setQuantity] = useState<number>(1);
+  const { add } = useCart();
 
   useEffect(() => {
     getDetails(ID);
   }, []);
+
+  const handleAddToCart = () => {
+    const item: cartItem = {
+      id: ID,
+      title: data?.title,
+      price: data?.price,
+      imageUrl,
+      quantity,
+    };
+    add(item);
+  };
 
   return (
     <div className="min-h-screen flex">
@@ -39,11 +54,14 @@ const page = ({ params }: productPageProps) => {
             <p className="text-green text-xl font-medium mb-5">
               ${data?.price}
             </p>
-            <Quantity />
+            <Quantity quantity={quantity} setQuantity={setQuantity} />
           </div>
           <div className="w-1/2">
             <OrderTypeForm />
-            <button className="bg-green text-white px-5 py-2 mt-5 hover:bg-grey rounded-md">
+            <button
+              className="bg-green text-white px-5 py-2 mt-5 hover:bg-grey rounded-md"
+              onClick={handleAddToCart}
+            >
               <ShoppingCartOutlined className="text-white" /> Add to Cart
             </button>
           </div>
