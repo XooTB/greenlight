@@ -1,5 +1,6 @@
 import Link from "next/link";
 import "./file.css";
+import "./globals.css";
 import Products from "sections/Products";
 import Info from "sections/Info";
 import Testimonials from "sections/Testimonials";
