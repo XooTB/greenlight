@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import CartProduct from "components/CartProducts";
+import CartProducts from "components/CartProducts";
 import CartTotal from "components/CartTotal";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="min-h-screen">
       <div className="flex flex-col items-center pt-10">
@@ -22,7 +22,7 @@ const page = () => {
               <th className="pb-7">Total</th>
             </tr>
           </thead>
-          <CartProduct />
+          <CartProducts />
         </table>
         <CartTotal />
       </div>
@@ -30,4 +30,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

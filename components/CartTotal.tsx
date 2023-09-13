@@ -1,11 +1,14 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useCart } from "store/store";
 import { countCartTotal } from "lib/utils";
 
 const CartTotal = () => {
   const { cart } = useCart();
-  const total = countCartTotal(cart);
+  let total;
+  useEffect(() => {
+    total = countCartTotal(cart);
+  }, []);
 
   return (
     <div className="px-5 py-10 flex justify-end gap-10">

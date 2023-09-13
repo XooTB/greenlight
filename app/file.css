@@ -11,3 +11,8 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.profile-head {
+  background-image: url("../assets/images/profile-head.jpg");
+  background-position: center;
+}

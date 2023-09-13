@@ -1,10 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import useAuth from "hooks/useAuth";
 import { AuthStore } from "store/auth";
+import { useRouter } from "next/navigation";
 
 type loginInfo = {
   email: string;
@@ -14,6 +15,7 @@ type loginInfo = {
 const page = () => {
   const { isLoading, error, userLogin } = useAuth();
   const { user } = AuthStore();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -22,6 +24,12 @@ const page = () => {
   const onSubmit: SubmitHandler<loginInfo> = (data) => {
     userLogin(data.email, data.password);
   };
+
+  useEffect(() => {
+    if (user) {
+      router.push("/user");
+    }
+  }, [user]);
 
   console.log(errors);
   console.log(user);
@@ -49,6 +57,7 @@ const page = () => {
 
         <input
           type="submit"
+          value="Login"
           className="text-white bg-green px-5 py-2 w-4/5 rounded-lg hover:bg-zinc-400
            font-semibold hover:cursor-pointer"
           disabled={isLoading}

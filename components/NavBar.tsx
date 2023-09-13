@@ -24,7 +24,7 @@ const NavBar = () => {
     <div className="container mx-auto flex justify-between items-center bg-white h-20">
       <div className="flex items-center justify-center w-1/3">
         <Link href="/" className="flex items-center">
-          <Image src={logo} height={40} width={40} alt="logo" />
+          <Image src={logo} alt="logo" className="w-38" />
           <p className="text-2xl pl-1 font-semibold text-green">Greenlight</p>
         </Link>
       </div>
@@ -32,13 +32,13 @@ const NavBar = () => {
         className="flex font-roboto text-base w-1/3 justify-between items-center font-medium
        text-black px-5"
       >
-        <Link href="/discover">
+        <Link href="/products">
           <p className="hover:text-green transition duration-300">Discover</p>
         </Link>
         <Link href="/about">
           <p className="hover:text-green transition duration-300">About</p>
         </Link>
-        <Link href="/contact">
+        <Link href="/#">
           <p className="hover:text-green transition duration-300">Contact us</p>
         </Link>
       </div>
