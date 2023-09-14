@@ -1,14 +1,14 @@
 "use client";
-import React, { useEffect } from "react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import { useCart } from "store/store";
-import { countCartTotal } from "lib/utils";
 
 const CartTotal = () => {
-  const { cart } = useCart();
-  let total;
+  const { cart, total, setTotal } = useCart();
+
   useEffect(() => {
-    total = countCartTotal(cart);
-  }, []);
+    setTotal(cart);
+  }, [cart]);
 
   return (
     <div className="px-5 py-10 flex justify-end gap-10">
@@ -20,9 +20,11 @@ const CartTotal = () => {
           Shipping cost will be calculated later
         </p>
       </div>
-      <button className="bg-green text-white font-poppins px-5 py-1 rounded-lg font-semibold">
-        Check-out
-      </button>
+      <Link href="/cart/checkout" className="">
+        <button className="bg-green text-white font-poppins px-5 py-2 rounded-lg font-semibold hover:bg-slate-500">
+          Check-out
+        </button>
+      </Link>
     </div>
   );
 };
