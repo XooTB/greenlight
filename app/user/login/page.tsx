@@ -32,7 +32,6 @@ const page = () => {
   }, [user]);
 
   console.log(errors);
-  console.log(user);
 
   return (
     <div className="min-h-screen flex justify-center py-5">
