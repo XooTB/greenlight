@@ -2,11 +2,15 @@
 import { useState } from "react";
 import { AuthStore, userData, userInfo } from "store/auth";
 import PockeBase from "pocketbase";
+import { useRouter } from "next/navigation";
+import { useCart } from "@/store/store";
 
 const useAuth = () => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { login, logout } = AuthStore();
+  const { emptyCart } = useCart();
   const pb = new PockeBase(process.env.NEXT_PUBLIC_API);
 
   const userSignup = async (userData: userData) => {
@@ -35,6 +39,7 @@ const useAuth = () => {
         };
 
         login(info);
+        router.push("/user");
       } else {
         //@ts-ignore
         setError(logResponse.message);
@@ -76,7 +81,12 @@ const useAuth = () => {
     setIsLoading(false);
   };
 
-  return { isLoading, error, userSignup, userLogin };
+  const userLogout = () => {
+    emptyCart();
+    logout();
+  };
+
+  return { isLoading, error, userSignup, userLogin, userLogout };
 };
 
 export default useAuth;

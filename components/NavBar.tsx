@@ -13,11 +13,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "components/ui/dropdown-menu";
+import useAuth from "hooks/useAuth";
 
 const NavBar = () => {
-  const { user, logout } = AuthStore();
+  const { user } = AuthStore();
+  const { userLogout } = useAuth();
+
   const handleLogout = () => {
-    logout();
+    userLogout();
   };
 
   return (

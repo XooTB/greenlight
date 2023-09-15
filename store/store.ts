@@ -9,6 +9,7 @@ type Store = {
   setTotal: (cart: cartItem[]) => void;
   add: (product: cartItem) => void;
   remove: (productID: string) => void;
+  emptyCart: () => void;
 };
 
 export const useCart = create<Store>()(
@@ -39,6 +40,11 @@ export const useCart = create<Store>()(
       remove: (productID: string) => {
         set((state) => ({
           cart: [...state.cart.filter((item) => item.id !== productID)],
+        }));
+      },
+      emptyCart: () => {
+        set((state) => ({
+          cart: [],
         }));
       },
     }),

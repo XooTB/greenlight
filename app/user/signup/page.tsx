@@ -1,24 +1,39 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import useAuth from "hooks/useAuth";
 import { userData, AuthStore } from "store/auth";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const SignUp = () => {
   const { isLoading, error, userSignup } = useAuth();
+  const [match, setMatch] = useState<boolean>();
+  const router = useRouter();
+
   const { user } = AuthStore();
+
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<userData>();
+  const pass = watch("password");
+  const passCon = watch("passwordConfirm");
 
   const onSubmit: SubmitHandler<userData> = (data: userData) => {
     userSignup(data);
   };
 
-  console.log(user);
+  useEffect(() => {
+    if (pass === passCon) {
+      setMatch(true);
+    } else {
+      setMatch(false);
+    }
+  }, [pass, passCon]);
 
   return (
     <div className="min-h-screen flex justify-center py-5">
@@ -55,16 +70,25 @@ const SignUp = () => {
         <input
           type="password"
           placeholder="Confirm Password"
-          {...register("passwordConfirm", { required: true })}
+          {...register("passwordConfirm", {
+            required: true,
+          })}
           className="px-3 py-2 w-4/5 rounded-lg border border-green text-blue text-sm"
         />
+        {!match && (
+          <div className="flex justify-start w-4/5">
+            <p className="text-red font-semibold ">Passwords don't match</p>
+          </div>
+        )}
 
-        <input
+        <button
           type="submit"
           className="text-white bg-green px-5 py-2 w-4/5 rounded-lg hover:bg-zinc-400
            font-semibold hover:cursor-pointer"
           disabled={isLoading}
-        />
+        >
+          {isLoading ? <BeatLoader /> : "Sign up"}
+        </button>
         <p className="font-medium font-poppins">
           Alredy have an account?{" "}
           <Link

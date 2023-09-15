@@ -6,6 +6,7 @@ import Link from "next/link";
 import useAuth from "hooks/useAuth";
 import { AuthStore } from "store/auth";
 import { useRouter } from "next/navigation";
+import BeatLoader from "react-spinners/BeatLoader";
 
 type loginInfo = {
   email: string;
@@ -54,13 +55,14 @@ const page = () => {
           className="px-3 py-2 w-4/5 rounded-lg border border-green text-blue text-sm"
         />
 
-        <input
+        <button
           type="submit"
-          value="Login"
           className="text-white bg-green px-5 py-2 w-4/5 rounded-lg hover:bg-zinc-400
            font-semibold hover:cursor-pointer"
           disabled={isLoading}
-        />
+        >
+          {isLoading ? <BeatLoader /> : "Login"}
+        </button>
         <p className="font-medium font-poppins">
           Don't have an account?{" "}
           <Link
